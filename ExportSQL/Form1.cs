@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Data;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -10,70 +9,70 @@ namespace ExportSQL
 {
     public partial class Form1 : Form
     {
-        private readonly OpenFileDialog chooseOutputFullFarEast = new OpenFileDialog();
-        private readonly OpenFileDialog chooseOutputCharBopo = new OpenFileDialog();
-        private readonly OpenFileDialog chooseOutputPinBopo = new OpenFileDialog();
-        private readonly OpenFileDialog chooseOutputPinMypin = new OpenFileDialog();
-        private readonly OpenFileDialog chooseOutputCeDict = new OpenFileDialog();
+        private readonly OpenFileDialog _chooseOutputFullFarEast = new OpenFileDialog();
+        private readonly OpenFileDialog _chooseOutputCharBopo = new OpenFileDialog();
+        private readonly OpenFileDialog _chooseOutputPinBopo = new OpenFileDialog();
+        private readonly OpenFileDialog _chooseOutputPinMypin = new OpenFileDialog();
+        private readonly OpenFileDialog _chooseOutputCeDict = new OpenFileDialog();
 
         public Form1()
         {
             InitializeComponent();
-            chooseOutputFullFarEast.FileOk += OnOutputFullFarEastDialogOK;
-            chooseOutputCharBopo.FileOk += OnOutputCharBopoDialogOK;
-            chooseOutputPinBopo.FileOk += OnOutputPinBopoDialogOK;
-            chooseOutputPinMypin.FileOk += OnOutputPinMypinDialogOK;
-            chooseOutputCeDict.FileOk += OnOutputCeDictDialogOK;
+            _chooseOutputFullFarEast.FileOk += OnOutputFullFarEastDialogOk;
+            _chooseOutputCharBopo.FileOk += OnOutputCharBopoDialogOk;
+            _chooseOutputPinBopo.FileOk += OnOutputPinBopoDialogOk;
+            _chooseOutputPinMypin.FileOk += OnOutputPinMypinDialogOk;
+            _chooseOutputCeDict.FileOk += OnOutputCeDictDialogOk;
         }
 
-        private void OnOutputFullFarEastDialogOK(object sender, CancelEventArgs e)
+        private void OnOutputFullFarEastDialogOk(object sender, CancelEventArgs e)
         {
-            OutputFullFarEastName.Text = chooseOutputFullFarEast.FileName;
+            OutputFullFarEastName.Text = _chooseOutputFullFarEast.FileName;
         }
 
-        private void OnOutputCharBopoDialogOK(object sender, CancelEventArgs e)
+        private void OnOutputCharBopoDialogOk(object sender, CancelEventArgs e)
         {
-            OutputCharBopoName.Text = chooseOutputCharBopo.FileName;
+            OutputCharBopoName.Text = _chooseOutputCharBopo.FileName;
         }
 
-        private void OnOutputPinBopoDialogOK(object sender, CancelEventArgs e)
+        private void OnOutputPinBopoDialogOk(object sender, CancelEventArgs e)
         {
-            OutputPinBopoName.Text = chooseOutputPinBopo.FileName;
+            OutputPinBopoName.Text = _chooseOutputPinBopo.FileName;
         }
 
-        private void OnOutputPinMypinDialogOK(object sender, CancelEventArgs e)
+        private void OnOutputPinMypinDialogOk(object sender, CancelEventArgs e)
         {
-            OutputPinMypinName.Text = chooseOutputPinMypin.FileName;
+            OutputPinMypinName.Text = _chooseOutputPinMypin.FileName;
         }
 
-        private void OnOutputCeDictDialogOK(object sender, CancelEventArgs e)
+        private void OnOutputCeDictDialogOk(object sender, CancelEventArgs e)
         {
-            OutputCeDictName.Text = chooseOutputCeDict.FileName;
+            OutputCeDictName.Text = _chooseOutputCeDict.FileName;
         }
 
         private void ChooseFullFareast_Click(object sender, EventArgs e)
         {
-            chooseOutputFullFarEast.ShowDialog();
+            _chooseOutputFullFarEast.ShowDialog();
         }
 
         private void ChooseCharBopo_Click(object sender, EventArgs e)
         {
-            chooseOutputCharBopo.ShowDialog();
+            _chooseOutputCharBopo.ShowDialog();
         }
 
         private void ChoosePinBopo_Click(object sender, EventArgs e)
         {
-            chooseOutputPinBopo.ShowDialog();
+            _chooseOutputPinBopo.ShowDialog();
         }
 
         private void ChoosePinMypin_Click(object sender, EventArgs e)
         {
-            chooseOutputPinMypin.ShowDialog();
+            _chooseOutputPinMypin.ShowDialog();
         }
 
         private void ChooseCeDict_Click(object sender, EventArgs e)
         {
-            chooseOutputCeDict.ShowDialog();
+            _chooseOutputCeDict.ShowDialog();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -83,19 +82,19 @@ namespace ExportSQL
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (radioACER0.Checked == true)
+            if (radioACER0.Checked)
             {
                 Properties.Settings.Default.ActiveSQL = Properties.Settings.Default.acer0;
                 SetFolders("ACER0");
             }
 
-            if (radioAMAZON1.Checked == true)
+            if (radioAMAZON1.Checked)
             {
                 Properties.Settings.Default.ActiveSQL = Properties.Settings.Default.amazon1;
                 SetFolders("AMAZON1");
             }
 
-            if (radioBAX2ZAONV6.Checked == true)
+            if (radioBAX2ZAONV6.Checked)
             {
                 Properties.Settings.Default.ActiveSQL = Properties.Settings.Default.bax2zaonv6;
                 SetFolders("BAX2ZAONV6");
@@ -103,178 +102,176 @@ namespace ExportSQL
 
             if (chkCharBopo.Checked)
             {
-                FileStream Writing1 = new FileStream(OutputCharBopoName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
-                StreamWriter OutputLine1 = new StreamWriter(Writing1, UTF8Encoding.UTF8);
-                string FileLine1 = "ID\tChar\tBopo\tCji";
-                OutputLine1.WriteLine(FileLine1);
+                FileStream writing1 = new FileStream(OutputCharBopoName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+                StreamWriter outputLine1 = new StreamWriter(writing1, Encoding.UTF8);
+                string fileLine1 = "ID\tChar\tBopo\tCji";
+                outputLine1.WriteLine(fileLine1);
 
-                using (ChineseStudyDataContext MyChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
+                using (ChineseStudyDataContext myChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
                 {
-                    var MyChars = from q in MyChineseStudy.CharBopos
+                    var myChars = from q in myChineseStudy.CharBopos
                                   orderby q.Char, q.Bopo
                                   select q;
 
-                    foreach (var MyChar in MyChars)
+                    foreach (var myChar in myChars)
                     {
-                        FileLine1 = MyChar.ID + "\t" + MyChar.Char + "\t" + MyChar.Bopo + "\t" + MyChar.Cji;
-                        OutputLine1.WriteLine(FileLine1);
+                        fileLine1 = myChar.ID + "\t" + myChar.Char + "\t" + myChar.Bopo + "\t" + myChar.Cji;
+                        outputLine1.WriteLine(fileLine1);
                     }
                 }
 
-                OutputLine1.Close(); 
+                outputLine1.Close(); 
             }
 
             if (chkPinBopo.Checked)
             {
-                FileStream Writing2 = new FileStream(OutputPinBopoName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
-                StreamWriter OutputLine2 = new StreamWriter(Writing2, UTF8Encoding.UTF8);
-                string FileLine2 = "ID\tPin\tBopo";
-                OutputLine2.WriteLine(FileLine2);
+                FileStream writing2 = new FileStream(OutputPinBopoName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+                StreamWriter outputLine2 = new StreamWriter(writing2, Encoding.UTF8);
+                string fileLine2 = "ID\tPin\tBopo";
+                outputLine2.WriteLine(fileLine2);
 
-                using (ChineseStudyDataContext MyChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
+                using (ChineseStudyDataContext myChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
                 {
-                    var MyBopos = from q in MyChineseStudy.PinBopos
+                    var myBopos = from q in myChineseStudy.PinBopos
                                   orderby q.Bopo, q.Pin
                                   select q;
 
-                    foreach (var MyBopo in MyBopos)
+                    foreach (var myBopo in myBopos)
                     {
-                        FileLine2 = MyBopo.ID + "\t" + MyBopo.Pin + "\t" + MyBopo.Bopo;
-                        OutputLine2.WriteLine(FileLine2);
+                        fileLine2 = myBopo.ID + "\t" + myBopo.Pin + "\t" + myBopo.Bopo;
+                        outputLine2.WriteLine(fileLine2);
                     }
                 }
 
-                OutputLine2.Close(); 
+                outputLine2.Close(); 
             }
 
             if (chkPinMypin.Checked)
             {
-                FileStream Writing3 = new FileStream(OutputPinMypinName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
-                StreamWriter OutputLine3 = new StreamWriter(Writing3, UTF8Encoding.UTF8);
-                string FileLine3 = "ID\tPin\tMyPin";
-                OutputLine3.WriteLine(FileLine3);
+                FileStream writing3 = new FileStream(OutputPinMypinName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+                StreamWriter outputLine3 = new StreamWriter(writing3, Encoding.UTF8);
+                string fileLine3 = "ID\tPin\tMyPin";
+                outputLine3.WriteLine(fileLine3);
 
-                using (ChineseStudyDataContext MyChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
+                using (ChineseStudyDataContext myChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
                 {
-                    var MyPins = from q in MyChineseStudy.PinMypins
+                    var myPins = from q in myChineseStudy.PinMypins
                                  orderby q.MyPin, q.Pin
                                  select q;
 
-                    foreach (var Mypin in MyPins)
+                    foreach (var mypin in myPins)
                     {
-                        FileLine3 = Mypin.ID + "\t" + Mypin.Pin + "\t" + Mypin.MyPin;
-                        OutputLine3.WriteLine(FileLine3);
+                        fileLine3 = mypin.ID + "\t" + mypin.Pin + "\t" + mypin.MyPin;
+                        outputLine3.WriteLine(fileLine3);
                     }
                 }
 
-                OutputLine3.Close(); 
+                outputLine3.Close(); 
             }
 
             if (chkFullFarEast.Checked)
             {
-                FileStream Writing4 = new FileStream(OutputFullFarEastName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
-                StreamWriter OutputLine4 = new StreamWriter(Writing4, UTF8Encoding.UTF8);
-                string FileLine4 = "ID\tBopo\tChar\tFeNumber\tEnglish\tHex\tCji";
-                OutputLine4.WriteLine(FileLine4);
+                FileStream writing4 = new FileStream(OutputFullFarEastName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+                StreamWriter outputLine4 = new StreamWriter(writing4, Encoding.UTF8);
+                string fileLine4 = "ID\tBopo\tChar\tFeNumber\tEnglish\tHex\tCji";
+                outputLine4.WriteLine(fileLine4);
 
-                using (ChineseStudyDataContext MyChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
+                using (ChineseStudyDataContext myChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
                 {
-                    var MyFes = from q in MyChineseStudy.FullFarEasts
+                    var myFes = from q in myChineseStudy.FullFarEasts
                                 orderby q.Char, q.Bopo
                                 select q;
 
-                    foreach (var MyFe in MyFes)
+                    foreach (var myFe in myFes)
                     {
-                        FileLine4 = MyFe.ID.ToString();
-                        FileLine4 += "\t";
-                        FileLine4 += (String.IsNullOrEmpty(MyFe.Bopo) ? " " : MyFe.Bopo);
-                        FileLine4 += "\t";
-                        FileLine4 += MyFe.Char;
-                        FileLine4 += "\t";
-                        FileLine4 += ((MyFe.FeNumber == null) ? " " : MyFe.FeNumber.ToString());
-                        FileLine4 += "\t";
-                        FileLine4 += (String.IsNullOrEmpty(MyFe.English) ? " " : MyFe.English);
-                        FileLine4 += "\t";
-                        FileLine4 += MyFe.Hex;
-                        FileLine4 += "\t";
-                        FileLine4 += String.IsNullOrEmpty(MyFe.Cji) ? " " : MyFe.Cji;
-                        OutputLine4.WriteLine(FileLine4);
+                        fileLine4 = myFe.ID.ToString();
+                        fileLine4 += "\t";
+                        fileLine4 += (String.IsNullOrEmpty(myFe.Bopo) ? " " : myFe.Bopo);
+                        fileLine4 += "\t";
+                        fileLine4 += myFe.Char;
+                        fileLine4 += "\t";
+                        fileLine4 += myFe.FeNumber ?? "0";
+                        fileLine4 += "\t";
+                        fileLine4 += (String.IsNullOrEmpty(myFe.English) ? " " : myFe.English);
+                        fileLine4 += "\t";
+                        fileLine4 += myFe.Hex;
+                        fileLine4 += "\t";
+                        fileLine4 += String.IsNullOrEmpty(myFe.Cji) ? " " : myFe.Cji;
+                        outputLine4.WriteLine(fileLine4);
                     }
                 }
 
-                OutputLine4.Close(); 
+                outputLine4.Close(); 
             }
 
                 if (chkCeDict.Checked)
                 {
-                    FileStream Writing5 = new FileStream(OutputCeDictName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
-                    StreamWriter OutputLine5 = new StreamWriter(Writing5, UTF8Encoding.UTF8);
-                    string FileLine5 = "ID\tBopo\tChar\tFeNumber\tEnglish\tHex\tCji";
-                    OutputLine5.WriteLine(FileLine5);
+                    FileStream writing5 = new FileStream(OutputCeDictName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+                    StreamWriter outputLine5 = new StreamWriter(writing5, Encoding.UTF8);
+                    string fileLine5 = "ID\tBopo\tChar\tFeNumber\tEnglish\tHex\tCji";
+                    outputLine5.WriteLine(fileLine5);
 
-                    using (ChineseStudyDataContext MyChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
+                    using (ChineseStudyDataContext myChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
                     {
-                        var MyFes = from q in MyChineseStudy.CeDicts
+                        var myFes = from q in myChineseStudy.CeDicts
                                     orderby q.Char, q.Bopo
                                     select q;
 
-                        foreach (var MyFe in MyFes)
+                        foreach (var myFe in myFes)
                         {
-                            FileLine5 = MyFe.ID + "\t" + MyFe.Bopo + "\t" + MyFe.Char + "\t" + MyFe.English + "\t" + MyFe.Pinyin + "\t" + MyFe.Hex;
-                            OutputLine5.WriteLine(FileLine5);
+                            fileLine5 = myFe.ID + "\t" + myFe.Bopo + "\t" + myFe.Char + "\t" + myFe.English + "\t" + myFe.Pinyin + "\t" + myFe.Hex;
+                            outputLine5.WriteLine(fileLine5);
                         }
                     }
 
-                    OutputLine5.Close(); 
+                    outputLine5.Close(); 
                 }
 
             if (chk_3000_.Checked)
             {
-                FileStream Writing6 = new FileStream(Output_3000_Name.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
-                StreamWriter OutputLine6 = new StreamWriter(Writing6, UTF8Encoding.UTF8);
-                string FileLine6 = "ID\tFEseq\tZhuyin\tTraditional\tEnglish\tNumPinyin\tCritPinyin\tSimplified\tCji";
-                OutputLine6.WriteLine(FileLine6);
+                FileStream writing6 = new FileStream(Output_3000_Name.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+                StreamWriter outputLine6 = new StreamWriter(writing6, Encoding.UTF8);
+                string fileLine6 = "ID\tFEseq\tZhuyin\tTraditional\tEnglish\tNumPinyin\tCritPinyin\tSimplified\tCji";
+                outputLine6.WriteLine(fileLine6);
 
-                string looker1 = Properties.Settings.Default.ActiveSQL;
-
-                using (ChineseStudyDataContext MyChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
+                using (ChineseStudyDataContext myChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
                 {
-                    var My3000s = from q in MyChineseStudy._3000_Characters
+                    var my3000S = from q in myChineseStudy._3000_Characters
                                   orderby q.FEseq, q.Traditional
                                   select q;
 
-                    foreach (var My3000 in My3000s)
+                    foreach (var my3000 in my3000S)
                     {
-                        FileLine6 = My3000.ID + "\t" + My3000.FEseq + "\t" + My3000.Zhuyin + "\t" + My3000.Traditional + "\t" + 
-                            My3000.English + "\t" + My3000.NumPinyin + "\t" + My3000.CritPinyin + "\t" + My3000.Simplified + "\t" + My3000.Cji;
-                        OutputLine6.WriteLine(FileLine6);
+                        fileLine6 = my3000.ID + "\t" + my3000.FEseq + "\t" + my3000.Zhuyin + "\t" + my3000.Traditional + "\t" + 
+                            my3000.English + "\t" + my3000.NumPinyin + "\t" + my3000.CritPinyin + "\t" + my3000.Simplified + "\t" + my3000.Cji;
+                        outputLine6.WriteLine(fileLine6);
                     }
                 }
 
-                OutputLine6.Close();
+                outputLine6.Close();
             }
 
             if (chkPinBopo.Checked)
             {
-                FileStream Writing2 = new FileStream(OutputPinBopoName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
-                StreamWriter OutputLine2 = new StreamWriter(Writing2, UTF8Encoding.UTF8);
-                string FileLine2 = "ID\tPin\tBopo";
-                OutputLine2.WriteLine(FileLine2);
+                FileStream writing2 = new FileStream(OutputPinBopoName.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+                StreamWriter outputLine2 = new StreamWriter(writing2, Encoding.UTF8);
+                string fileLine2 = "ID\tPin\tBopo";
+                outputLine2.WriteLine(fileLine2);
 
-                using (ChineseStudyDataContext MyChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
+                using (ChineseStudyDataContext myChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
                 {
-                    var MyBopos = from q in MyChineseStudy.PinBopos
+                    var myBopos = from q in myChineseStudy.PinBopos
                                   orderby q.Bopo, q.Pin
                                   select q;
 
-                    foreach (var MyBopo in MyBopos)
+                    foreach (var myBopo in myBopos)
                     {
-                        FileLine2 = MyBopo.ID + "\t" + MyBopo.Pin + "\t" + MyBopo.Bopo;
-                        OutputLine2.WriteLine(FileLine2);
+                        fileLine2 = myBopo.ID + "\t" + myBopo.Pin + "\t" + myBopo.Bopo;
+                        outputLine2.WriteLine(fileLine2);
                     }
                 }
 
-                OutputLine2.Close();
+                outputLine2.Close();
             }
         }
 
