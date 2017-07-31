@@ -14,6 +14,8 @@ namespace ExportSQL
         private readonly OpenFileDialog _chooseOutputPinBopo = new OpenFileDialog();
         private readonly OpenFileDialog _chooseOutputPinMypin = new OpenFileDialog();
         private readonly OpenFileDialog _chooseOutputCeDict = new OpenFileDialog();
+        private readonly OpenFileDialog _chooseOutput_3000 = new OpenFileDialog();
+        private readonly OpenFileDialog _chooseOutputCharBopoPinCrit = new OpenFileDialog();
 
         public Form1()
         {
@@ -23,6 +25,8 @@ namespace ExportSQL
             _chooseOutputPinBopo.FileOk += OnOutputPinBopoDialogOk;
             _chooseOutputPinMypin.FileOk += OnOutputPinMypinDialogOk;
             _chooseOutputCeDict.FileOk += OnOutputCeDictDialogOk;
+            _chooseOutput_3000.FileOk += OnOutput_3000DialogOk;
+            _chooseOutputCharBopoPinCrit.FileOk += OnOutputCharBopoDialogOk;
         }
 
         private void OnOutputFullFarEastDialogOk(object sender, CancelEventArgs e)
@@ -50,6 +54,16 @@ namespace ExportSQL
             OutputCeDictName.Text = _chooseOutputCeDict.FileName;
         }
 
+        private void OnOutput_3000DialogOk(object sender, CancelEventArgs e)
+        {
+            Output_3000_Name.Text = _chooseOutput_3000.FileName;
+        }
+
+        private void OnOutputCharBopoPinCritDialogOk(object sender, CancelEventArgs e)
+        {
+            Output_3000_Name.Text = _chooseOutput_3000.FileName;
+        }
+
         private void ChooseFullFareast_Click(object sender, EventArgs e)
         {
             _chooseOutputFullFarEast.ShowDialog();
@@ -73,6 +87,16 @@ namespace ExportSQL
         private void ChooseCeDict_Click(object sender, EventArgs e)
         {
             _chooseOutputCeDict.ShowDialog();
+        }
+
+        private void Choose_3000(object sender, EventArgs e)
+        {
+            _chooseOutput_3000.ShowDialog();
+        }
+
+        private void ChooseCharBopoPinCrit(object sender, EventArgs e)
+        {
+            _chooseOutputCharBopoPinCrit.ShowDialog();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -273,6 +297,29 @@ namespace ExportSQL
 
                 outputLine2.Close();
             }
+
+            if (chkCharBopoPinCrit.Checked)
+            {
+                FileStream writing7 = new FileStream(OutputCharBopoPinCrit_Name.Text, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+                StreamWriter outputline7 = new StreamWriter(writing7, Encoding.UTF8);
+                string fileline7 = "ID\tChar\tBopo\tPin\tCrit\tCji";
+                outputline7.WriteLine(fileline7);
+
+                using (ChineseStudyDataContext myChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
+                {
+                    var myPinCrits = from q in myChineseStudy.CharBopoPinCrits
+                        orderby q.Cji, q.Char, q.Pin
+                        select q;
+
+                    foreach (var myPinCrit in myPinCrits)
+                    {
+                        fileline7 = myPinCrit.ID + "\t" + myPinCrit.Char + "\t" + myPinCrit.Bopo + "\t" + myPinCrit.Pin + "\t" + myPinCrit.Crit + "\t" + myPinCrit.Cji;
+                        outputline7.WriteLine(fileline7);
+                    }
+                }
+
+                outputline7.Close();
+            }
         }
 
         private void SetFolders(string subfolder)
@@ -283,16 +330,9 @@ namespace ExportSQL
             OutputPinBopoName.Text = OutputPinBopoName.Text.Replace("FOLDER", subfolder).Replace("ACER0", subfolder).Replace("AMAZON1", subfolder).Replace("BAX2ZAONV6", subfolder);
             OutputPinMypinName.Text = OutputPinMypinName.Text.Replace("FOLDER", subfolder).Replace("ACER0", subfolder).Replace("AMAZON1", subfolder).Replace("BAX2ZAONV6", subfolder);
             Output_3000_Name.Text = Output_3000_Name.Text.Replace("FOLDER", subfolder).Replace("ACER0", subfolder).Replace("AMAZON1", subfolder).Replace("BAX2ZAONV6", subfolder);
+            OutputCharBopoPinCrit_Name.Text = OutputCharBopoPinCrit_Name.Text.Replace("FOLDER", subfolder).Replace("ACER0", subfolder).Replace("AMAZON1", subfolder).Replace("BAX2ZAONV6", subfolder);
         }
 
-        private void Choose_3000(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grpSelectServer_Enter(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

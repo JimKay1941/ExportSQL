@@ -58,12 +58,16 @@
             this.button8 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.Output_3000_Name = new System.Windows.Forms.TextBox();
+            this.chkCharBopoPinCrit = new System.Windows.Forms.CheckBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.OutputCharBopoPinCrit_Name = new System.Windows.Forms.TextBox();
             this.grpSelectServer.SuspendLayout();
             this.SuspendLayout();
             // 
             // OutputFullFarEastName
             // 
-            this.OutputFullFarEastName.Location = new System.Drawing.Point(181, 17);
+            this.OutputFullFarEastName.Location = new System.Drawing.Point(207, 17);
             this.OutputFullFarEastName.Name = "OutputFullFarEastName";
             this.OutputFullFarEastName.Size = new System.Drawing.Size(612, 20);
             this.OutputFullFarEastName.TabIndex = 0;
@@ -71,7 +75,7 @@
             // 
             // OutputCharBopoName
             // 
-            this.OutputCharBopoName.Location = new System.Drawing.Point(181, 43);
+            this.OutputCharBopoName.Location = new System.Drawing.Point(207, 43);
             this.OutputCharBopoName.Name = "OutputCharBopoName";
             this.OutputCharBopoName.Size = new System.Drawing.Size(612, 20);
             this.OutputCharBopoName.TabIndex = 1;
@@ -79,7 +83,7 @@
             // 
             // OutputPinBopoName
             // 
-            this.OutputPinBopoName.Location = new System.Drawing.Point(181, 69);
+            this.OutputPinBopoName.Location = new System.Drawing.Point(207, 69);
             this.OutputPinBopoName.Name = "OutputPinBopoName";
             this.OutputPinBopoName.Size = new System.Drawing.Size(612, 20);
             this.OutputPinBopoName.TabIndex = 2;
@@ -87,7 +91,7 @@
             // 
             // OutputPinMypinName
             // 
-            this.OutputPinMypinName.Location = new System.Drawing.Point(181, 95);
+            this.OutputPinMypinName.Location = new System.Drawing.Point(207, 95);
             this.OutputPinMypinName.Name = "OutputPinMypinName";
             this.OutputPinMypinName.Size = new System.Drawing.Size(612, 20);
             this.OutputPinMypinName.TabIndex = 3;
@@ -96,7 +100,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(98, 20);
+            this.label1.Location = new System.Drawing.Point(121, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 4;
@@ -105,7 +109,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(98, 46);
+            this.label2.Location = new System.Drawing.Point(126, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 5;
@@ -114,7 +118,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(98, 72);
+            this.label3.Location = new System.Drawing.Point(133, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 6;
@@ -123,7 +127,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(98, 98);
+            this.label4.Location = new System.Drawing.Point(130, 98);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 7;
@@ -232,7 +236,6 @@
             this.grpSelectServer.TabIndex = 17;
             this.grpSelectServer.TabStop = false;
             this.grpSelectServer.Text = "Select SQL Server to Export From";
-            this.grpSelectServer.Enter += new System.EventHandler(this.grpSelectServer_Enter);
             // 
             // button7
             // 
@@ -247,7 +250,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(98, 125);
+            this.label5.Location = new System.Drawing.Point(141, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 19;
@@ -255,7 +258,7 @@
             // 
             // OutputCeDictName
             // 
-            this.OutputCeDictName.Location = new System.Drawing.Point(181, 122);
+            this.OutputCeDictName.Location = new System.Drawing.Point(207, 122);
             this.OutputCeDictName.Name = "OutputCeDictName";
             this.OutputCeDictName.Size = new System.Drawing.Size(612, 20);
             this.OutputCeDictName.TabIndex = 18;
@@ -264,7 +267,7 @@
             // chkFullFarEast
             // 
             this.chkFullFarEast.AutoSize = true;
-            this.chkFullFarEast.Location = new System.Drawing.Point(160, 20);
+            this.chkFullFarEast.Location = new System.Drawing.Point(186, 20);
             this.chkFullFarEast.Name = "chkFullFarEast";
             this.chkFullFarEast.Size = new System.Drawing.Size(15, 14);
             this.chkFullFarEast.TabIndex = 21;
@@ -273,7 +276,7 @@
             // chkCharBopo
             // 
             this.chkCharBopo.AutoSize = true;
-            this.chkCharBopo.Location = new System.Drawing.Point(160, 46);
+            this.chkCharBopo.Location = new System.Drawing.Point(186, 46);
             this.chkCharBopo.Name = "chkCharBopo";
             this.chkCharBopo.Size = new System.Drawing.Size(15, 14);
             this.chkCharBopo.TabIndex = 22;
@@ -282,7 +285,7 @@
             // chkPinBopo
             // 
             this.chkPinBopo.AutoSize = true;
-            this.chkPinBopo.Location = new System.Drawing.Point(160, 72);
+            this.chkPinBopo.Location = new System.Drawing.Point(186, 72);
             this.chkPinBopo.Name = "chkPinBopo";
             this.chkPinBopo.Size = new System.Drawing.Size(15, 14);
             this.chkPinBopo.TabIndex = 23;
@@ -291,7 +294,7 @@
             // chkPinMypin
             // 
             this.chkPinMypin.AutoSize = true;
-            this.chkPinMypin.Location = new System.Drawing.Point(160, 98);
+            this.chkPinMypin.Location = new System.Drawing.Point(186, 98);
             this.chkPinMypin.Name = "chkPinMypin";
             this.chkPinMypin.Size = new System.Drawing.Size(15, 14);
             this.chkPinMypin.TabIndex = 24;
@@ -300,7 +303,7 @@
             // chkCeDict
             // 
             this.chkCeDict.AutoSize = true;
-            this.chkCeDict.Location = new System.Drawing.Point(160, 125);
+            this.chkCeDict.Location = new System.Drawing.Point(186, 125);
             this.chkCeDict.Name = "chkCeDict";
             this.chkCeDict.Size = new System.Drawing.Size(15, 14);
             this.chkCeDict.TabIndex = 25;
@@ -309,7 +312,7 @@
             // chk_3000_
             // 
             this.chk_3000_.AutoSize = true;
-            this.chk_3000_.Location = new System.Drawing.Point(160, 153);
+            this.chk_3000_.Location = new System.Drawing.Point(186, 153);
             this.chk_3000_.Name = "chk_3000_";
             this.chk_3000_.Size = new System.Drawing.Size(15, 14);
             this.chk_3000_.TabIndex = 29;
@@ -328,7 +331,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(98, 153);
+            this.label6.Location = new System.Drawing.Point(149, 153);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 27;
@@ -336,17 +339,56 @@
             // 
             // Output_3000_Name
             // 
-            this.Output_3000_Name.Location = new System.Drawing.Point(181, 150);
+            this.Output_3000_Name.Location = new System.Drawing.Point(207, 150);
             this.Output_3000_Name.Name = "Output_3000_Name";
             this.Output_3000_Name.Size = new System.Drawing.Size(612, 20);
             this.Output_3000_Name.TabIndex = 26;
             this.Output_3000_Name.Text = "C:\\Users\\darkd\\Downloads\\Chinese Pod\\FOLDER\\_3000_.csv";
             // 
+            // chkCharBopoPinCrit
+            // 
+            this.chkCharBopoPinCrit.AutoSize = true;
+            this.chkCharBopoPinCrit.Location = new System.Drawing.Point(186, 181);
+            this.chkCharBopoPinCrit.Name = "chkCharBopoPinCrit";
+            this.chkCharBopoPinCrit.Size = new System.Drawing.Size(15, 14);
+            this.chkCharBopoPinCrit.TabIndex = 33;
+            this.chkCharBopoPinCrit.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(10, 176);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(82, 22);
+            this.button9.TabIndex = 32;
+            this.button9.Text = "Choose";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(96, 181);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(84, 13);
+            this.label7.TabIndex = 31;
+            this.label7.Text = "CharBopoPinCrit";
+            // 
+            // OutputCharBopoPinCrit_Name
+            // 
+            this.OutputCharBopoPinCrit_Name.Location = new System.Drawing.Point(207, 178);
+            this.OutputCharBopoPinCrit_Name.Name = "OutputCharBopoPinCrit_Name";
+            this.OutputCharBopoPinCrit_Name.Size = new System.Drawing.Size(612, 20);
+            this.OutputCharBopoPinCrit_Name.TabIndex = 30;
+            this.OutputCharBopoPinCrit_Name.Text = "C:\\Users\\darkd\\Downloads\\Chinese Pod\\FOLDER\\CharBopoPinCrit.csv";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(811, 383);
+            this.ClientSize = new System.Drawing.Size(830, 383);
+            this.Controls.Add(this.chkCharBopoPinCrit);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.OutputCharBopoPinCrit_Name);
             this.Controls.Add(this.chk_3000_);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label6);
@@ -415,6 +457,10 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox Output_3000_Name;
+        private System.Windows.Forms.CheckBox chkCharBopoPinCrit;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox OutputCharBopoPinCrit_Name;
     }
 }
 
