@@ -261,11 +261,18 @@ namespace ExportSQL
                 using (ChineseStudyDataContext myChineseStudy = new ChineseStudyDataContext(Properties.Settings.Default.ActiveSQL))
                 {
                     var my3000S = from q in myChineseStudy._3000_Characters
-                                  orderby q.FEseq, q.Traditional
+                                  orderby q.FEseq
                                   select q;
 
                     foreach (var my3000 in my3000S)
                     {
+                        int fromFEseq;
+                        var isInteger = int.TryParse(my3000.FEseq, out fromFEseq);
+                        if (!isInteger)
+                        {
+                            textStatus.Text = "FEseq is non-integer; ID= " + my3000.ID + " FEseq = " + my3000.FEseq;
+                            return;
+                        }
                         fileLine6 = my3000.ID + "\t" + my3000.FEseq + "\t" + my3000.Zhuyin + "\t" + my3000.Traditional + "\t" + 
                             my3000.English + "\t" + my3000.NumPinyin + "\t" + my3000.CritPinyin + "\t" + my3000.Simplified + "\t" + my3000.Cji;
                         outputLine6.WriteLine(fileLine6);

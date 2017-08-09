@@ -62,6 +62,8 @@
             this.button9 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.OutputCharBopoPinCrit_Name = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textStatus = new System.Windows.Forms.TextBox();
             this.grpSelectServer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -380,11 +382,29 @@
             this.OutputCharBopoPinCrit_Name.TabIndex = 30;
             this.OutputCharBopoPinCrit_Name.Text = "C:\\Users\\darkd\\Downloads\\Chinese Pod\\FOLDER\\CharBopoPinCrit.csv";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(225, 271);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(83, 13);
+            this.label8.TabIndex = 34;
+            this.label8.Text = "Status Message";
+            // 
+            // textStatus
+            // 
+            this.textStatus.Location = new System.Drawing.Point(314, 268);
+            this.textStatus.Name = "textStatus";
+            this.textStatus.Size = new System.Drawing.Size(504, 20);
+            this.textStatus.TabIndex = 35;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(830, 383);
+            this.Controls.Add(this.textStatus);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.chkCharBopoPinCrit);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.label7);
@@ -461,6 +481,8 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox OutputCharBopoPinCrit_Name;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textStatus;
     }
 }
 
