@@ -264,6 +264,7 @@ namespace ExportSQL
                                   orderby q.FEseq
                                   select q;
 
+                    char[] charsToTrim = { '\"' };
                     foreach (var my3000 in my3000S)
                     {
                         int fromFEseq;
@@ -273,8 +274,11 @@ namespace ExportSQL
                             textStatus.Text = "FEseq is non-integer; ID= " + my3000.ID + " FEseq = " + my3000.FEseq;
                             return;
                         }
+                        
+                        var english = my3000.English.Trim(charsToTrim);
+                        
                         fileLine6 = my3000.ID + "\t" + my3000.FEseq + "\t" + my3000.Zhuyin + "\t" + my3000.Traditional + "\t" + 
-                            my3000.English + "\t" + my3000.NumPinyin + "\t" + my3000.CritPinyin + "\t" + my3000.Simplified + "\t" + my3000.Cji;
+                            english + "\t" + my3000.NumPinyin + "\t" + my3000.CritPinyin + "\t" + my3000.Simplified + "\t" + my3000.Cji;
                         outputLine6.WriteLine(fileLine6);
                     }
                 }
